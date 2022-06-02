@@ -2,6 +2,8 @@
 
 from tkinter import *
 
+
+# Making entries
 def entries():
     global first_name, last_name, item, amount, recpit
     Label().grid(column=1, row=1)
@@ -19,6 +21,7 @@ def entries():
     Label().grid(column=1, row=9)
 
 
+# Running the window 
 root = Tk()
 entries()
 root.geometry("800x1000")
