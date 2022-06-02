@@ -2,7 +2,7 @@
 
 from tkinter import *
 
-def buttons():
+def entries():
     global first_name, last_name, item, amount, recpit
     Label().grid(column=1, row=1)
     first_name = Entry().grid(column=2, row=2)
@@ -20,6 +20,6 @@ def buttons():
 
 
 root = Tk()
-buttons()
+entries()
 root.geometry("800x1000")
 root.mainloop()
