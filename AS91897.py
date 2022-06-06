@@ -21,7 +21,7 @@ def entries():
     Label().grid(column=1, row=9)
 
 
-# Running the window 
+# Running the window
 root = Tk()
 entries()
 root.geometry("800x1000")
