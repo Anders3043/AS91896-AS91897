@@ -47,9 +47,9 @@ def append():
     total_entries = 0
     try:
         int(amount.get())
-        it_is = True
+        it_is = "True""
     except ValueError:
-        it_is = False
+        it_is = "False"
     if len(first_name.get()) == 0:
         first_name_label = Label(main_window, text="Please do not leave this blank", fg='red')
         first_name_label.grid(column=3, row=2)
