@@ -3,7 +3,7 @@
 from tkinter import *
 from tkinter import ttk
 
-total_entry = 0
+total_entry = -1
 
 # Making entries
 def entries():
@@ -46,8 +46,7 @@ item_error = 0
 amount_error = 0
 # set up for append and prints
 hire_list = []
-count = 0
-
+count = -1
 
 def append():
     global first_name, last_name, item, amount, receipt, first_name_error, first_name_label, last_name_error, \
@@ -116,32 +115,27 @@ def append():
         total_entries += 1
         amount_error = 0
     if len(first_name.get()) != 0 and len(last_name.get()) != 0 and len(item.get()) != 0 and it_is == "True":
-        hire_list.append(first_name.get())
-        hire_list.append(last_name.get())
-        hire_list.append(item.get())
-        hire_list.append(amount.get())
+        hire_list.append([first_name.get(), last_name.get(), item.get(), amount.get()])
         first_name.delete(0, 'end')
         last_name.delete(0, 'end')
         item.delete(0, 'end')
         amount.delete(0, 'end')
-        print(hire_list)
         total_entry += 1
 
 
 # Making print function
 def print_list():
     global total_entry, count
-    count = 0
     Label(main_window, font='bold', text="First name").grid(column=1, row=10)
     Label(main_window, font='bold', text="Last name").grid(column=2, row=10)
     Label(main_window, font='bold', text="Item hired").grid(column=3, row=10)
     Label(main_window, font='bold', text="Amount of item hired").grid(column=4, row=10)
 
     if count < total_entry:
-        Label(main_window, text=(hire_list[0])).grid(column=1, row=count + 11)
-        Label(main_window, text=(hire_list[1])).grid(column=2, row=count + 11)
-        Label(main_window, text=(hire_list[2])).grid(column=3, row=count + 11)
-        Label(main_window, text=(hire_list[3])).grid(column=4, row=count + 11)
+        Label(main_window, text=(hire_list[total_entry][0])).grid(column=1, row=count + 12)
+        Label(main_window, text=(hire_list[total_entry][1])).grid(column=2, row=count + 12)
+        Label(main_window, text=(hire_list[total_entry][2])).grid(column=3, row=count + 12)
+        Label(main_window, text=(hire_list[total_entry][3])).grid(column=4, row=count + 12)
         count += 1
 
 
