@@ -130,12 +130,14 @@ def print_list():
     Label(main_window, font='bold', text="Last name").grid(column=2, row=10)
     Label(main_window, font='bold', text="Item hired").grid(column=3, row=10)
     Label(main_window, font='bold', text="Amount of item hired").grid(column=4, row=10)
+    Label(main_window, font='bold', text="Receipt number").grid(column=5, row=10)
 
     if count < total_entry:
         Label(main_window, text=(hire_list[total_entry][0])).grid(column=1, row=count + 12)
         Label(main_window, text=(hire_list[total_entry][1])).grid(column=2, row=count + 12)
         Label(main_window, text=(hire_list[total_entry][2])).grid(column=3, row=count + 12)
         Label(main_window, text=(hire_list[total_entry][3])).grid(column=4, row=count + 12)
+        Label(main_window, text=(count+2)).grid(column=5, row=count+12)
         count += 1
 
 
