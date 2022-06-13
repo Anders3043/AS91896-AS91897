@@ -3,11 +3,10 @@
 from tkinter import *
 from tkinter import ttk
 
-total_entry = -1
 
 # Making entries
 def entries():
-    global first_name, last_name, item, amount, receipt
+    global first_name, last_name, item, amount, receipt, delete_entry
     Label().grid(column=1, row=1)
     first_name = Entry(main_window)
     first_name.grid(column=2, row=2)
@@ -26,18 +25,25 @@ def entries():
     Label(font='bold', text="Amount of item hired").grid(column=1, row=8)
     Label().grid(column=1, row=9)
     Label(text="                                                       ").grid(column=3, row=2)
+    delete_entry = Entry(main_window)
+    Label().grid(column=4, row=7)
+    delete_entry.grid(column=4, row=8)
+    Label(font='bold', text="Receipt number here").grid(column=5, row=8)
 
 
+# Function to quit the program
 def quit_program():
     main_window.destroy()
 
 
+# adding buttons
 def buttons():
     Button(main_window, text="Quit", command=quit_program).grid(column=1, row=0)
     Button(main_window, text="Append details", command=append).grid(column=4, row=2)
     Label().grid(column=4, row=3)
     Button(main_window, text="Print details", command=print_list).grid(column=4, row=4)
-
+    Label().grid(column=4, row=5)
+    Button(main_window, text="Delete (Receipt number)", command=delete_list).grid(column=4, row=6)
 
 # setting up for error message
 first_name_error = 0
@@ -47,6 +53,8 @@ amount_error = 0
 # set up for append and prints
 hire_list = []
 count = -1
+total_entry = -1
+
 
 def append():
     global first_name, last_name, item, amount, receipt, first_name_error, first_name_label, last_name_error, \
@@ -139,6 +147,23 @@ def print_list():
         Label(main_window, text=(hire_list[total_entry][3])).grid(column=4, row=count + 12)
         Label(main_window, text=(count+2)).grid(column=5, row=count+12)
         count += 1
+
+
+def delete_list():
+    global delete_entry, hire_list, total_entry
+    try:
+        int(delete_entry.get())
+        it_is2 = "True"
+    except ValueError:
+        it_is2 = "False"
+    if it_is2 == "False":
+        er = Label(main_window, text='Please make sure it is a number')
+        er.grid(column=6, row=8)
+    else:
+        deletes = int(delete_entry.get()) - 1
+        del hire_list[int(deletes)]
+        total_entry -= 1
+        delete_entry.delete(0, 'end')
 
 
 # Running the window
