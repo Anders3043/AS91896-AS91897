@@ -45,6 +45,7 @@ def buttons():
     Label().grid(column=4, row=5)
     Button(main_window, text="Delete (Receipt number)", command=delete_list).grid(column=4, row=6)
 
+
 # setting up for error message
 first_name_error = 0
 last_name_error = 0
@@ -59,7 +60,6 @@ total_entry = -1
 def append():
     global first_name, last_name, item, amount, receipt, first_name_error, first_name_label, last_name_error, \
         last_name_label, item_error, item_label, amount_label, amount_error, total_entry, hire_list
-    total_entries = 0
     try:
         int(amount.get())
         it_is = "True"
@@ -70,33 +70,27 @@ def append():
         first_name_label.grid(column=3, row=2)
         first_name_error += 1
     elif first_name_error > 0:
-        total_entries += 1
         first_name_label.grid_forget()
         first_name_error = 0
     else:
-        total_entries += 1
         first_name_error = 0
     if len(last_name.get()) == 0:
         last_name_label = Label(text="Please do not leave this blank", fg='red')
         last_name_label.grid(column=3, row=4)
         last_name_error += 1
     elif last_name_error > 0:
-        total_entries += 1
         last_name_label.grid_forget()
         last_name_error = 0
     else:
-        total_entries += 1
         last_name_error = 0
     if len(item.get()) == 0:
         item_label = Label(text="Please do not leave this blank", fg='red')
         item_label.grid(column=3, row=6)
         item_error += 1
     elif item_error > 0:
-        total_entries += 1
         item_label.grid_forget()
         item_error = 0
     else:
-        total_entries += 1
         item_error = 0
     if len(amount.get()) == 0:
         amount_label = Label(text="Please do not leave this blank", fg='red')
@@ -120,7 +114,6 @@ def append():
         amount_label.grid_forget()
         amount_error = 0
     else:
-        total_entries += 1
         amount_error = 0
     if len(first_name.get()) != 0 and len(last_name.get()) != 0 and len(item.get()) != 0 and it_is == "True":
         hire_list.append([first_name.get(), last_name.get(), item.get(), amount.get()])
@@ -168,13 +161,13 @@ def delete_list():
         deletes = int(delete_entry.get()) - 1
         del hire_list[int(deletes)]
         total_entry -= 1
-        count -= 1
+        count -= 2
         delete_entry.delete(0, 'end')
-        L1.grid_forget()
-        L2.grid_forget()
-        L3.grid_forget()
-        L4.grid_forget()
-        L5.grid_forget()
+        L1.grid_remove()
+        L2.grid_remove()
+        L3.grid_remove()
+        L4.grid_remove()
+        L5.grid_remove()
         print_list()
 
 
