@@ -133,7 +133,7 @@ def append():
 
 # Making print function
 def print_list():
-    global total_entry, count
+    global total_entry, count, L1, L2, L3, L4, L5
     Label(main_window, font='bold', text="First name").grid(column=1, row=10)
     Label(main_window, font='bold', text="Last name").grid(column=2, row=10)
     Label(main_window, font='bold', text="Item hired").grid(column=3, row=10)
@@ -141,29 +141,41 @@ def print_list():
     Label(main_window, font='bold', text="Receipt number").grid(column=5, row=10)
 
     if count < total_entry:
-        Label(main_window, text=(hire_list[total_entry][0])).grid(column=1, row=count + 12)
-        Label(main_window, text=(hire_list[total_entry][1])).grid(column=2, row=count + 12)
-        Label(main_window, text=(hire_list[total_entry][2])).grid(column=3, row=count + 12)
-        Label(main_window, text=(hire_list[total_entry][3])).grid(column=4, row=count + 12)
-        Label(main_window, text=(count+2)).grid(column=5, row=count+12)
+        L1 = Label(main_window, text=(hire_list[total_entry][0]))
+        L1.grid(column=1, row=count + 12)
+        L2 = Label(main_window, text=(hire_list[total_entry][1]))
+        L2.grid(column=2, row=count + 12)
+        L3 = Label(main_window, text=(hire_list[total_entry][2]))
+        L3.grid(column=3, row=count + 12)
+        L4 = Label(main_window, text=(hire_list[total_entry][3]))
+        L4.grid(column=4, row=count + 12)
+        L5 = Label(main_window, text=(count+2))
+        L5.grid(column=5, row=count+12)
         count += 1
 
 
 def delete_list():
-    global delete_entry, hire_list, total_entry
+    global delete_entry, hire_list, total_entry, count, L1, L2, L3, L4, L5, count
     try:
         int(delete_entry.get())
         it_is2 = "True"
     except ValueError:
         it_is2 = "False"
     if it_is2 == "False":
-        er = Label(main_window, text='Please make sure it is a number')
+        er = Label(main_window, text='Please make sure it is a number', fg='red')
         er.grid(column=6, row=8)
     else:
         deletes = int(delete_entry.get()) - 1
         del hire_list[int(deletes)]
         total_entry -= 1
+        count -= 1
         delete_entry.delete(0, 'end')
+        L1.grid_forget()
+        L2.grid_forget()
+        L3.grid_forget()
+        L4.grid_forget()
+        L5.grid_forget()
+        print_list()
 
 
 # Running the window
