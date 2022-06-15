@@ -163,6 +163,11 @@ def delete_list():
         total_entry -= 1
         count -= 2
         delete_entry.delete(0, 'end')
+        Label(main_window, text='                                                 ').grid(column=1, row=11)
+        Label(main_window, text='                                                 ').grid(column=2, row=11)
+        Label(main_window, text='                                                 ').grid(column=3, row=11)
+        Label(main_window, text='                                                 ').grid(column=4, row=11)
+        Label(main_window, text='                                                 ').grid(column=5, row=11)
         L1.grid_remove()
         L2.grid_remove()
         L3.grid_remove()
