@@ -58,9 +58,10 @@ total_entry = -1
 pr = 0
 twice = 0
 
+
 def append():
     global first_name, last_name, item, amount, receipt, first_name_error, first_name_label, last_name_error, \
-        last_name_label, item_error, item_label, amount_label, amount_error, total_entry, hire_list, twice, pr_labelgit
+        last_name_label, item_error, item_label, amount_label, amount_error, total_entry, hire_list
     try:
         int(amount.get())
         it_is = "True"
@@ -127,10 +128,7 @@ def append():
         item.delete(0, 'end')
         amount.delete(0, 'end')
         total_entry += 1
-    if twice == 1:
-        pr_label = Label(main_window, text="Please press print twice")
-        pr_label.grid(column=5, row=4)
-        twice = 0
+
 
 # Making print function
 def print_list():
@@ -154,6 +152,10 @@ def print_list():
         L5.grid(column=5, row=count+12)
         count += 1
         pr += 1
+    if twice == 1:
+        pr_label = Label(main_window, text="Please press print twice")
+        pr_label.grid(column=5, row=4)
+        twice = 0
     if pr == 2:
         pr_label.grid_forget()
 
