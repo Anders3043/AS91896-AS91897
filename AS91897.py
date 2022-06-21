@@ -96,6 +96,10 @@ def append():
         amount_label = Label(text="Please do not leave this blank", fg='red')
         amount_label.grid(column=3, row=8)
         amount_error += 1
+    elif int(amount.get()) > 500 or int(amount.get()) < 1:
+        amount_label = Label(text="Please make sure it's within 1-500", fg='red')
+        amount_label.grid(column=3, row=8)
+        amount_error += 1
     elif amount_error > 0 and len(amount.get()) == 0:
         amount_label.grid_forget()
         amount_label = Label(text="Please do not leave this blank", fg='red')
@@ -115,7 +119,7 @@ def append():
         amount_error = 0
     else:
         amount_error = 0
-    if len(first_name.get()) != 0 and len(last_name.get()) != 0 and len(item.get()) != 0 and it_is == "True":
+    if len(first_name.get()) != 0 and len(last_name.get()) != 0 and amount_error == 0 and it_is == "True":
         hire_list.append([first_name.get(), last_name.get(), item.get(), amount.get()])
         first_name.delete(0, 'end')
         last_name.delete(0, 'end')
