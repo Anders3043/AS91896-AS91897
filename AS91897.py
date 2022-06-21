@@ -60,7 +60,7 @@ twice = 0
 
 def append():
     global first_name, last_name, item, amount, receipt, first_name_error, first_name_label, last_name_error, \
-        last_name_label, item_error, item_label, amount_label, amount_error, total_entry, hire_list, twice, pr_label
+        last_name_label, item_error, item_label, amount_label, amount_error, total_entry, hire_list, twice, pr_labelgit
     try:
         int(amount.get())
         it_is = "True"
@@ -174,7 +174,8 @@ def delete_list():
         total_entry -= 1
         count -= 2
         pr = 0
-        twice = 1
+        if count == -2:
+            twice = 1
         delete_entry.delete(0, 'end')
         Label(main_window, text='                                                 ').grid(column=1, row=11)
         Label(main_window, text='                                                 ').grid(column=2, row=11)
