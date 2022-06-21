@@ -55,11 +55,12 @@ amount_error = 0
 hire_list = []
 count = -1
 total_entry = -1
-
+pr = 0
+twice = 0
 
 def append():
     global first_name, last_name, item, amount, receipt, first_name_error, first_name_label, last_name_error, \
-        last_name_label, item_error, item_label, amount_label, amount_error, total_entry, hire_list
+        last_name_label, item_error, item_label, amount_label, amount_error, total_entry, hire_list, twice, pr_label
     try:
         int(amount.get())
         it_is = "True"
@@ -126,11 +127,14 @@ def append():
         item.delete(0, 'end')
         amount.delete(0, 'end')
         total_entry += 1
-
+    if twice == 1:
+        pr_label = Label(main_window, text="Please press print twice")
+        pr_label.grid(column=5, row=4)
+        twice = 0
 
 # Making print function
 def print_list():
-    global total_entry, count, L1, L2, L3, L4, L5
+    global total_entry, count, L1, L2, L3, L4, L5, pr, twice, pr_label
     Label(main_window, font='bold', text="First name").grid(column=1, row=10)
     Label(main_window, font='bold', text="Last name").grid(column=2, row=10)
     Label(main_window, font='bold', text="Item hired").grid(column=3, row=10)
@@ -149,10 +153,13 @@ def print_list():
         L5 = Label(main_window, text=(count+2))
         L5.grid(column=5, row=count+12)
         count += 1
+        pr += 1
+    if pr == 2:
+        pr_label.grid_forget()
 
 
 def delete_list():
-    global delete_entry, hire_list, total_entry, count, L1, L2, L3, L4, L5, count
+    global delete_entry, hire_list, total_entry, count, L1, L2, L3, L4, L5, count, twice, pr
     try:
         int(delete_entry.get())
         it_is2 = "True"
@@ -166,6 +173,8 @@ def delete_list():
         del hire_list[int(deletes)]
         total_entry -= 1
         count -= 2
+        pr = 0
+        twice = 1
         delete_entry.delete(0, 'end')
         Label(main_window, text='                                                 ').grid(column=1, row=11)
         Label(main_window, text='                                                 ').grid(column=2, row=11)
